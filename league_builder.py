@@ -12,6 +12,18 @@ Teams = (1) Sharks, (2) Dragons, and (3) Raptors.
 '''
 
 import csv
+import random
+
+#Get data from file. 
+PLAYERS = "soccer_players.csv"
+with open( PLAYERS, "r") as players_file:
+
+#Create list of empty team objects
+#Create list of player objects (dicts)
+#Sort players by exerpience level 
+#Randomly and equally assign players of each experience level to a team object. 
+#Write team objects to teams.txt file in proper format.
+#Generate welcome letters. 
 
 
 
