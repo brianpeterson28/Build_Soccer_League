@@ -14,12 +14,33 @@ Teams = (1) Sharks, (2) Dragons, and (3) Raptors.
 import csv
 import random
 
-#Get data from file. 
-PLAYERS = "soccer_players.csv"
-with open( PLAYERS, "r") as players_file:
+PLAYER_INFO = "soccer_players.csv"
+#Get data from file.
+def main(): 
 
-#Create list of empty team objects
+	with open(PLAYER_INFO, newline="") as file:
+		player_info = csv.reader(file)
+
+		for player in player_info:
+			player = create_player_dict(player)
+			if player['name'] == 'Name':
+				pass
+			else:
+				print(player)
+
+	#Create list of empty team objects
+		sharks = []
+		dragons = []
+		raptors = []
+
 #Create list of player objects (dicts)
+def create_player_dict(player):
+	name, height, experience, guardian_name = player
+	player_dict = {'name' : name, 
+				   'height' : height, 
+				   'experience' : experience,
+				   'guardian_name' : guardian_name}
+	return player_dict
 #Sort players by exerpience level 
 #Randomly and equally assign players of each experience level to a team object. 
 #Write team objects to teams.txt file in proper format.
@@ -29,3 +50,4 @@ with open( PLAYERS, "r") as players_file:
 
 
 if __name__ == "__main__":
+	main()
