@@ -1,5 +1,5 @@
 '''
-Brian Peterson | bpeterson28 |  
+Brian Peterson | Github: brianpeterson28 | teamtreehouse.com/brianpeterson
 
 Treehouse Tech Degree - Project 1 - Build A Soccer League
 
