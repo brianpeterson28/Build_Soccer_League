@@ -17,16 +17,13 @@ import random
 PLAYER_INFO = "soccer_players.csv"
 #Get data from file.
 def main(): 
-
-	with open(PLAYER_INFO, newline="") as file:
-		player_info = csv.reader(file)
-
-		for player in player_info:
-			player = create_player_dict(player)
-			if player['name'] == 'Name':
-				pass
-			else:
-				print(player)
+	player_info = read_player_info(PLAYER_INFO)
+	for player in player_info:
+		player = create_player_dict(player)
+		if player['name'] == 'Name':
+			pass
+		else:
+			print(player)
 
 	#Create list of empty team objects
 		sharks = []
@@ -34,6 +31,15 @@ def main():
 		raptors = []
 
 #Create list of player objects (dicts)
+def read_player_info(file_name):
+	player_info = []
+	with open(file_name, newline="") as file:
+		reader = csv.reader(file)
+		for item in reader:
+			player_info.append(item)
+	return player_info
+
+
 def create_player_dict(player):
 	name, height, experience, guardian_name = player
 	player_dict = {'name' : name, 
