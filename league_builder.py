@@ -17,7 +17,7 @@ import random
 PLAYER_INFO = "soccer_players.csv"
 TEAM_NAMES = ["SHARKS", "DRAGONS", "RAPTORS"]
 TEAMS_FILE = "teams.txt"
-#Get data from file.
+
 def main(): 
 
 	player_info = read_player_info(PLAYER_INFO)
@@ -54,10 +54,14 @@ def main():
 		raptors.append(unexperienced_players.pop(random.randrange(
 			len(unexperienced_players))))
 
+	add_team_name_to_players(sharks, "SHARKS")
+	add_team_name_to_players(dragons, "DRAGONS")
+	add_team_name_to_players(raptors, "RAPTORS")
+
 	teams = [sharks, dragons, raptors]
 	create_team_list(teams)
-
-#Create list of player objects (dicts)
+	create_letters(teams)
+	
 def read_player_info(file_name):
 	player_info = []
 	with open(file_name, newline="") as file:
@@ -89,9 +93,37 @@ def create_team_list(list_of_teams):
 					+ "\n")
 			file.write("\n")
 
-#Sort players by exerpience level 
-#Randomly and equally assign players of each experience level to a team object. 
-#Write team objects to teams.txt file in proper format.
+def create_letters(list_of_teams):
+	players = []
+	for team in list_of_teams:
+		for player in team:
+			players.append(player)
+			file_name = create_letter_file_name(player['name'])
+			with open(file_name, "w") as letter:
+				guardian_name = player['guardian_name']
+				player_name = player['name']
+				team_name = player['team_name']
+				date_and_time = "Wednesday, May 2, 2018 at 5:00 PM"
+				letter.write("Dear " + guardian_name + ", \n")
+				letter.write("\n")
+				letter.write("Welcome to the Soccer League. ")
+				letter.write(player_name + " will be on the " + team_name + 
+					         ".\n\n")
+				letter.write("The first practice is on " + date_and_time)
+				letter.write("\n\n")
+				letter.write("We look forward to seeing you. \n")
+
+def create_letter_file_name(player_name):
+	file_name = player_name.lower().replace(" ", "_")
+	file_name += ".txt"
+	return file_name
+
+
+def add_team_name_to_players(team, team_name):
+	for player in team:
+		player['team_name'] = team_name
+	return team
+
 #Generate welcome letters. 
 
 if __name__ == "__main__":
