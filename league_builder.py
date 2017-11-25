@@ -5,21 +5,26 @@ Treehouse Tech Degree - Project 1 - Build A Soccer League
 
 This script opens a csv file containing soccer player information and uses
 that information to automatically sort the players into three teams. It also 
-automatically generates welcome letters for each player's parent/legal 
-gaurdian.  
-
-Teams = (1) Sharks, (2) Dragons, and (3) Raptors. 
+automatically generates personalized welcome letters for each player's 
+parent/legal gaurdian.  
 '''
 
 import csv
 import random
 
+#Create constant data objects that will be used throughout the script. 
 PLAYER_INFO = "soccer_players.csv"
 TEAM_NAMES = ["SHARKS", "DRAGONS", "RAPTORS"]
 TEAMS_FILE = "teams.txt"
 
+#The main function contains the core logic of the script. 
+#Step 1: Create player data objects.
+#Step 2: Sort player data objects by experience level. 
+#Step 3: Assign each player to a team. 
+#Step 4: Create team list file. 
+#Step 5: Create individual files for personalized letters to parents. 
 def main(): 
-
+ 
 	player_info = read_player_info(PLAYER_INFO)
 	experienced_players = []
 	unexperienced_players = []
@@ -61,7 +66,9 @@ def main():
 	teams = [sharks, dragons, raptors]
 	create_team_list(teams)
 	create_letters(teams)
-	
+
+#This is a helper function that opens the csv file and stores the player
+# data into a python list object for use by the main function. 
 def read_player_info(file_name):
 	player_info = []
 	with open(file_name, newline="") as file:
@@ -70,7 +77,8 @@ def read_player_info(file_name):
 			player_info.append(item)
 	return player_info
 
-
+#This is a helper function that creates a dictionary object for each player. 
+#The dicitonary object holds all the relevant information about the player. 
 def create_player_dict(player):
 	name, height, experience, guardian_name = player
 	player_dict = {'name' : name, 
@@ -79,6 +87,8 @@ def create_player_dict(player):
 				   'guardian_name' : guardian_name}
 	return player_dict
 
+#This is a helper function that drafts the teams.txt file which lists all the
+#players organized by team. 
 def create_team_list(list_of_teams):
 	index = 0
 	with open(TEAMS_FILE, "a") as file:
@@ -93,6 +103,8 @@ def create_team_list(list_of_teams):
 					+ "\n")
 			file.write("\n")
 
+#This is a helper function that drafts personalized letters to each player's 
+#legal guardian(s). 
 def create_letters(list_of_teams):
 	players = []
 	for team in list_of_teams:
@@ -113,18 +125,21 @@ def create_letters(list_of_teams):
 				letter.write("\n\n")
 				letter.write("We look forward to seeing you. \n")
 
+#This is a helper function that formats the file names for use in the 
+#create_letters function. 
 def create_letter_file_name(player_name):
 	file_name = player_name.lower().replace(" ", "_")
 	file_name += ".txt"
 	return file_name
 
-
+#This is a helper function that updates the player dictionaries with the 
+#name of the team they have been assigned to. 
 def add_team_name_to_players(team, team_name):
 	for player in team:
 		player['team_name'] = team_name
 	return team
 
-#Generate welcome letters. 
-
+#The main function executes when league_builder.py is run from the 
+#command line. 
 if __name__ == "__main__":
 	main()
