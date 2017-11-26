@@ -82,9 +82,9 @@ def read_player_info(file_name):
 def create_player_dict(player):
 	name, height, experience, guardian_name = player
 	player_dict = {'name' : name, 
-				   'height' : height, 
-				   'experience' : experience,
-				   'guardian_name' : guardian_name}
+		       'height' : height, 
+	               'experience' : experience,
+		       'guardian_name' : guardian_name}
 	return player_dict
 
 #This is a helper function that drafts the teams.txt file which lists all the
