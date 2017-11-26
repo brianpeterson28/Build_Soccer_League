@@ -6,7 +6,7 @@ Treehouse Tech Degree - Project 1 - Build A Soccer League
 This script opens a csv file containing soccer player information and uses
 that information to automatically sort the players into three teams. It also 
 automatically generates personalized welcome letters for each player's 
-parent/legal gaurdian.    
+parent/legal gaurdian.*    
 '''
 
 import csv
